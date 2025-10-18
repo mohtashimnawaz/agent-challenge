@@ -1,13 +1,22 @@
 import { MCPServer } from "@mastra/mcp"
-import { weatherTool } from "../tools";
-import { weatherAgent } from "../agents";
+import { 
+  createTableTool, 
+  addRelationTool, 
+  generateMigrationTool, 
+  validateSchemaTool,
+  exportSchemaTool 
+} from "../tools";
+import { schemaAgent } from "../agents";
 
 export const server = new MCPServer({
-  name: "My Custom Server",
+  name: "Database Schema Designer Server",
   version: "1.0.0",
-  tools: { weatherTool },
-  agents: { weatherAgent }, // this agent will become tool "ask_weatherAgent"
-  // workflows: {
-  // dataProcessingWorkflow, // this workflow will become tool "run_dataProcessingWorkflow"
-  // }
+  tools: { 
+    createTableTool, 
+    addRelationTool, 
+    generateMigrationTool, 
+    validateSchemaTool,
+    exportSchemaTool 
+  },
+  agents: { schemaAgent }, // this agent will become tool "ask_schemaAgent"
 });
